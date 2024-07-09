@@ -35,11 +35,34 @@ const Todocontroller = () => {
     );
   };
 
+  const workingTodos = todos.filter((todo) => !todo.isDone);
+  const doneTodos = todos.filter((todo) => todo.isDone);
+
   return (
     <main>
       <TodoForm onSubmitTodo={onSubmitTodo} />
       <TodoList
-        todos={todos}
+        headTitle="Ready"
+        todos={[
+          {
+            id: 1,
+            title: "Learn React",
+            content: "Learn React today",
+            isDone: false,
+          },
+        ]}
+        onDeleteTodoItem={onDeleteTodoItem}
+        onToggleTodoItem={onToggleTodoItem}
+      />
+      <TodoList
+        headTitle="Working"
+        todos={workingTodos}
+        onDeleteTodoItem={onDeleteTodoItem}
+        onToggleTodoItem={onToggleTodoItem}
+      />
+      <TodoList
+        headTitle="Done"
+        todos={doneTodos}
         onDeleteTodoItem={onDeleteTodoItem}
         onToggleTodoItem={onToggleTodoItem}
       />
